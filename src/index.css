@@ -50,6 +50,11 @@ body {
     max-width: none;
 }
 
+@font-face {
+    font-family: 'Gerhaus';
+    src: url('/fonts/Gerhaus-Regular.woff');
+}
+
 /* ------------------HEADER--------------------- */
 
 .header__container {
@@ -118,6 +123,7 @@ body {
     height: 610px;
     max-width: 1280px;
     margin: 0 15px;
+    overflow: hidden;
 }
 @media (max-width: 915px) {
     .main-block__container {
@@ -133,8 +139,8 @@ body {
     top: 30px;
 }
 .main-block__name{
-    font-family: Inter;
-    font-size: 90px;
+    font-family: Gerhaus;
+    font-size: 110px;
     font-weight: 900;
     line-height: normal;
     letter-spacing: -2.205px; 
@@ -187,7 +193,7 @@ body {
 }
 .main-block__button {
     position: relative;
-    top: 150px;
+    top: 130px;
 }
 @media (max-width: 916px) {
     .main-block__button {
@@ -249,32 +255,32 @@ body {
 } 
 @media (max-width: 1250px) {
     .main-block__image-home {
-        height: 400px;
+        height: 500px;
     }
 }
 @media (max-width: 1006px) {
     .main-block__image-home {
-        height: 300px;
+        height: 450px;
     }
 }
 @media (max-width: 990px) {
     .main-block__image-home {
-        height: 300px;
+        height: 450px;
     }
 }
 @media (max-width: 730px) {
     .main-block__image-home {
-        height: 250px;
+        height: 350px;
     }
 }
 @media (max-width: 550px) {
     .main-block__image-home {
-        height: 250px;
+        height: 350px;
     }
 }
 @media (max-width: 386px) {
     .main-block__image-home {
-        height: 200px;
+        height: 300px;
     }
 }
 .page__main-block-line {
@@ -295,10 +301,10 @@ body {
     background-color: #FFD9C3;
     max-width: 220px;
     border-radius: 0px 40px 40px 0px;
-    padding: 5px 0; 
+    padding: 15px 0; 
 }
 .block-about-company__header-icon {
-    height: 40px;
+    height: 30px;
     margin: 0 0 0 15px;
 }
 .block-about-company__header-text {
@@ -434,7 +440,7 @@ body {
     font-weight: 500;
     line-height: 145%; /* 21.75px */
     letter-spacing: 0.525px;
-    text-transform: uppercase; 
+    text-transform: lowercase; 
 }
 @media (max-width: 838px) {
     .body-company-descriptoin__text {
@@ -569,10 +575,11 @@ body {
 .input-service:checked ~ .item__content-footer {
     display: flex;
 }
+
 .item__content-footer {
     display: none;
     justify-content: end;
-    margin: 0 0 50px 0;
+    padding: 0 0 50px 0;
 }
 .item__content {
     flex: 0 1 50%;
@@ -596,7 +603,7 @@ body {
     font-size: 15px;
     font-weight: 500;
     line-height: 145%;
-    text-transform: uppercase; 
+    text-transform: lowercase; 
     cursor: pointer;
 }
 .item__content-button {
@@ -684,10 +691,18 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 50px 0 0 0;
+    max-width: 600;
 }
-@media (max-width: 779px) {
+@media (max-width: 1500px) {
     .content-form__input {
         flex-direction: column;
+    }
+    .content-form__input-line input {
+        width: 100%;
+    }
+    .content-form__button {
+        width: 100%;
+        margin-top: 20px;
     }
 }
 .content-form__input-line {
@@ -732,7 +747,7 @@ body {
     text-transform: uppercase;
     padding: 15px 20px;
     background-color: #351F1F;
-    max-width: 180px;
+    max-width: 100%;
     border-radius: 30px;
 }
 @media (max-width: 779px) {
@@ -753,7 +768,7 @@ body {
 /* -------FOOTER------- */
 
 footer {
-    margin-top: 250px;
+    margin-top: 50px;
     background-color: #351F1F;
 }
 footer .phone__number {
@@ -772,4 +787,14 @@ footer .logo__title span {
 .descriptoin__button,
 .more-info__button {
     cursor: pointer;
+}
+
+.swal-button {
+    background-color:#351F1F;
+    border-radius: 40px;
+    padding: 15px 60px;
+}
+.swal-button-container {
+    display: flex;
+    justify-content: center;
 }

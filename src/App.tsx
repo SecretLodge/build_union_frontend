@@ -1,13 +1,52 @@
+import axios from 'axios';
+import { useState } from 'react';
 import { Link } from 'react-scroll';
+import swal from 'sweetalert';
 
 function App() {
+  const [nameInput, setInputName] = useState('');
+  const [numberInput, setInputNumber] = useState('');
+
+  const sendFormToEmail = async () => {
+    try {
+      const result = await axios({
+        method: 'post',
+        url: 'https://stroysoyuz-59.online/message',
+        data: {
+          name: nameInput,
+          number: numberInput,
+        },
+        headers: {
+          'Content-type': 'application/json',
+        },
+      });
+      if (result.data.result)
+        return swal({
+          title: 'Сообщение доставлено успешно',
+          text: 'Мы скоро с вами свяжемся',
+          icon: 'success',
+        });
+      return swal(
+        'Что то пошло не так',
+        'Пожалуйста, обновите страницу и попробуйте ещё раз',
+        'error'
+      );
+    } catch {
+      swal(
+        'Что то пошло не так',
+        'Пожалуйста, обновите страницу и попробуйте ещё раз',
+        'error'
+      );
+    }
+  };
+
   return (
     <div className='wrapper'>
       <header className='header'>
         <div className='header__container _container'>
           <a href='' className='header__logo logo'>
             <img
-              src='./icons/union.svg'
+              src='/icons/union.svg'
               alt='Логотип Союз'
               className='logo__image'
             />
@@ -17,7 +56,7 @@ function App() {
           </a>
           <a className='header__phone' href='tel:+7-912-059-00-01'>
             <img
-              src='./icons/phone_icon.svg'
+              src='/icons/phone_icon.svg'
               alt='Телефон'
               className='phone__icon'
             />
@@ -52,7 +91,7 @@ function App() {
                   <div className='more-info__button-text'>УЗНАТЬ БОЛЬШЕ</div>
                   <img
                     className='more-info__button-icon'
-                    src='/public/icons/arrow_icon.svg'
+                    src='/icons/arrow_icon.svg'
                     alt='Указатель для кнопки'
                   />
                 </Link>
@@ -132,7 +171,7 @@ function App() {
                   >
                     <div>ПОДРОБНЕЕ</div>
                     <img
-                      src='/public/icons/white_arrow_icon.svg'
+                      src='/icons/white_arrow_icon.svg'
                       alt='Стрелка для кнопки'
                     />
                   </Link>
@@ -151,9 +190,9 @@ function App() {
             />
             <h3 className='block-about-company__header-text'>УСЛУГИ</h3>
           </div>
-          <div className='block-services__body _container'>
+          <div className='block-services__body'>
             <div className='block-services__body-items'>
-              <div className='block-services__body-item'>
+              <div className='block-services__body-item _container'>
                 <input className='input-service' type='checkbox' id='item_1' />
                 <label htmlFor='item_1' className='item__header'>
                   <div className='body-item__design'>
@@ -196,11 +235,59 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className='block-services__body-item'>
-                <input className='input-service' type='checkbox' id='item_2' />
-                <label htmlFor='item_2' className='item__header'>
+              {/* 2 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_11' />
+                <label htmlFor='item_11' className='item__header'>
                   <div className='body-item__design'>
                     <div className='design__number'>02</div>
+                    <div className='design__line'></div>
+                  </div>
+                  <div className='body-item__name-service'>
+                    <div className='name-services__text'>
+                      БЛАГОУСТРОЙСТВО ТЕРИТОРИИ
+                    </div>
+                    <img
+                      src='/icons/arrow_down.svg'
+                      alt='Стрелка для открытия'
+                      className='name-services__arrow'
+                    />
+                  </div>
+                </label>
+                <div className='item__content-footer'>
+                  <div className='item__content'>
+                    <p className='item__content-description'>
+                      Наши услуги включают озеленение, установку ландшафтных
+                      элементов, создание пешеходных дорожек, монтаж систем
+                      полива, освещения и многие другие аспекты благоустройства.
+                      Мы также уделяем внимание деталям, таким как установка
+                      скамеек, урн, игровых площадок и других элементов,
+                      создающих комфортную атмосферу для отдыха и активного
+                      времяпрепровождения.
+                    </p>
+                    <Link
+                      to='form-section'
+                      spy={true}
+                      smooth={true}
+                      offset={50}
+                      duration={500}
+                      className='item__content-button'
+                    >
+                      <div>ПОДРОБНЕЕ</div>
+                      <img
+                        src='/icons/white_arrow_icon.svg'
+                        alt='Стрелка для кнопки'
+                      />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              {/* 3 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_3' />
+                <label htmlFor='item_3' className='item__header'>
+                  <div className='body-item__design'>
+                    <div className='design__number'>03</div>
                     <div className='design__line'></div>
                   </div>
                   <div className='body-item__name-service'>
@@ -241,11 +328,12 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className='block-services__body-item'>
-                <input className='input-service' type='checkbox' id='item_3' />
-                <label htmlFor='item_3' className='item__header'>
+              {/* 4 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_4' />
+                <label htmlFor='item_4' className='item__header'>
                   <div className='body-item__design'>
-                    <div className='design__number'>03</div>
+                    <div className='design__number'>04</div>
                     <div className='design__line'></div>
                   </div>
                   <div className='body-item__name-service'>
@@ -294,11 +382,12 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className='block-services__body-item'>
-                <input className='input-service' type='checkbox' id='item_4' />
-                <label htmlFor='item_4' className='item__header'>
+              {/* 5 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_5' />
+                <label htmlFor='item_5' className='item__header'>
                   <div className='body-item__design'>
-                    <div className='design__number'>04</div>
+                    <div className='design__number'>05</div>
                     <div className='design__line'></div>
                   </div>
                   <div className='body-item__name-service'>
@@ -351,11 +440,12 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className='block-services__body-item'>
-                <input className='input-service' type='checkbox' id='item_5' />
-                <label htmlFor='item_5' className='item__header'>
+              {/* 6 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_6' />
+                <label htmlFor='item_6' className='item__header'>
                   <div className='body-item__design'>
-                    <div className='design__number'>05</div>
+                    <div className='design__number'>06</div>
                     <div className='design__line'></div>
                   </div>
                   <div className='body-item__name-service'>
@@ -399,11 +489,62 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className='block-services__body-item'>
-                <input className='input-service' type='checkbox' id='item_6' />
-                <label htmlFor='item_6' className='item__header'>
+              {/* 7 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_13' />
+                <label htmlFor='item_13' className='item__header'>
                   <div className='body-item__design'>
-                    <div className='design__number'>06</div>
+                    <div className='design__number'>07</div>
+                    <div className='design__line'></div>
+                  </div>
+                  <div className='body-item__name-service'>
+                    <div className='name-services__text'>НАТЯЖНЫЕ ПОТОЛКИ</div>
+                    <img
+                      src='/icons/arrow_down.svg'
+                      alt='Стрелка для открытия'
+                      className='name-services__arrow'
+                    />
+                  </div>
+                </label>
+                <div className='item__content-footer'>
+                  <div className='item__content'>
+                    <p className='item__content-description'>
+                      Наша команда обеспечит качественную установку натяжных
+                      потолков с использованием самых современных материалов.
+                      Натяжные потолки не только придают помещению элегантный и
+                      современный вид, но и имеют ряд преимуществ. Они легко
+                      монтируются, позволяют скрыть неровности и дефекты
+                      основного потолка, а также обладают отличными
+                      звукоизоляционными и теплоизоляционными свойствами. Наша
+                      команда проведет предварительную консультацию, чтобы
+                      понять ваши потребности и помочь выбрать наиболее
+                      подходящий вариант натяжного потолка. Мы также предлагаем
+                      конкурентоспособные цены, чтобы сделать наши услуги
+                      доступными для каждого клиента.
+                    </p>
+                    <Link
+                      to='form-section'
+                      spy={true}
+                      smooth={true}
+                      offset={50}
+                      duration={500}
+                      className='item__content-button'
+                    >
+                      <div>ПОДРОБНЕЕ</div>
+                      <img
+                        src='/icons/white_arrow_icon.svg'
+                        alt='Стрелка для кнопки'
+                      />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              {/* 8 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_7' />
+                <label htmlFor='item_7' className='item__header'>
+                  <div className='body-item__design'>
+                    <div className='design__number'>08</div>
                     <div className='design__line'></div>
                   </div>
                   <div className='body-item__name-service'>
@@ -449,11 +590,12 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className='block-services__body-item'>
-                <input className='input-service' type='checkbox' id='item_7' />
-                <label htmlFor='item_7' className='item__header'>
+              {/* 9 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_8' />
+                <label htmlFor='item_8' className='item__header'>
                   <div className='body-item__design'>
-                    <div className='design__number'>07</div>
+                    <div className='design__number'>09</div>
                     <div className='design__line'></div>
                   </div>
                   <div className='body-item__name-service'>
@@ -502,11 +644,12 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className='block-services__body-item'>
-                <input className='input-service' type='checkbox' id='item_8' />
-                <label htmlFor='item_8' className='item__header'>
+              {/* 10 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_9' />
+                <label htmlFor='item_9' className='item__header'>
                   <div className='body-item__design'>
-                    <div className='design__number'>08</div>
+                    <div className='design__number'>10</div>
                     <div className='design__line'></div>
                   </div>
                   <div className='body-item__name-service'>
@@ -556,11 +699,12 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className='block-services__body-item'>
-                <input className='input-service' type='checkbox' id='item_9' />
-                <label htmlFor='item_9' className='item__header'>
+              {/* 11 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_10' />
+                <label htmlFor='item_10' className='item__header'>
                   <div className='body-item__design'>
-                    <div className='design__number'>09</div>
+                    <div className='design__number'>11</div>
                     <div className='design__line'></div>
                   </div>
                   <div className='body-item__name-service'>
@@ -619,11 +763,12 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className='block-services__body-item'>
-                <input className='input-service' type='checkbox' id='item_10' />
-                <label htmlFor='item_10' className='item__header'>
+              {/* 12 */}
+              <div className='block-services__body-item _container'>
+                <input className='input-service' type='checkbox' id='item_12' />
+                <label htmlFor='item_12' className='item__header'>
                   <div className='body-item__design'>
-                    <div className='design__number'>10</div>
+                    <div className='design__number'>12</div>
                     <div className='design__line'></div>
                   </div>
                   <div className='body-item__name-service'>
@@ -663,6 +808,7 @@ function App() {
                   </div>
                 </div>
               </div>
+              {/* 13 */}
             </div>
           </div>
           <div className='bottom__line'></div>
@@ -671,23 +817,33 @@ function App() {
           <div id='form-section' className='feedback-form__body _container'>
             <div className='feedback-form__content content-form'>
               <div className='content-form__container'>
-                <p className='content-form__header'>
-                  ЗАПИСАТЬСЯ НА БЕСПЛАТНУЮ КОНСУЛЬТАЦИЮ
-                </p>
+                <div>
+                  <p className='content-form__header'>
+                    ЗАПИСАТЬСЯ НА БЕСПЛАТНУЮ КОНСУЛЬТАЦИЮ
+                  </p>
+                </div>
                 <div className='content-form__input'>
                   <div className='content-form__input-line'>
                     <input
                       type='text'
                       placeholder='Ваш Номер Телефона'
                       name='Номер телефона'
+                      value={numberInput}
+                      onChange={(event) => setInputNumber(event.target.value)}
                       id=''
                     />
-                    <input type='text' placeholder='Ваше Имя' name='Имя' />
+                    <input
+                      type='text'
+                      placeholder='Ваше Имя'
+                      name='Имя'
+                      value={nameInput}
+                      onChange={(event) => setInputName(event.target.value)}
+                    />
                   </div>
-                  <a href='' className='content-form__button'>
+                  <a className='content-form__button' onClick={sendFormToEmail}>
                     <p>ОТПРАВИТЬ</p>
                     <img
-                      src='/public/icons/white_arrow_icon.svg'
+                      src='/icons/white_arrow_icon.svg'
                       alt='Стрелка для кнопки отправить'
                     />
                   </a>
@@ -706,7 +862,7 @@ function App() {
         <div className='header__container _container'>
           <a href='' className='header__logo logo'>
             <img
-              src='./icons/union_white.svg'
+              src='/icons/union_white.svg'
               alt='Логотип Союз'
               className='logo__image'
             />
@@ -716,7 +872,7 @@ function App() {
           </a>
           <a className='header__phone' href='tel:+7-912-059-00-01'>
             <img
-              src='./icons/phone_icon_white.svg'
+              src='/icons/phone_icon_white.svg'
               alt='Телефон'
               className='phone__icon'
             />
