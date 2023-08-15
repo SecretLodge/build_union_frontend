@@ -11,7 +11,7 @@ function App() {
     try {
       const result = await axios({
         method: 'post',
-        url: 'https://stroysoyuz-59.online/message',
+        url: 'http://localhost:3000/message',
         data: {
           name: nameInput,
           number: numberInput,
